@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Requests\Commerce;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateQuotationItemRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'quotation_id' => 'sometimes|required|exists:quotations,id',
+            'description' => 'sometimes|required|string',
+            'quantity' => 'sometimes|required|numeric|min:0',
+            'unit_id' => 'sometimes|required|exists:units_of_measure,id',
+            'unit_price' => 'sometimes|required|numeric|min:0',
+            'line_total' => 'sometimes|required|numeric|min:0',
+        ];
+    }
+}
