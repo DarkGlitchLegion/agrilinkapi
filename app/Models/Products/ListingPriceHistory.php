@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ListingPriceHistory extends Model
 {
+    protected $table = 'listing_price_history';
+
     public $timestamps = false;
 
     protected $fillable = [

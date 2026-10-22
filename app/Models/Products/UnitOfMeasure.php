@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class UnitOfMeasure extends Model
 {
+    protected $table = 'units_of_measure';
+
     protected $fillable = [
         'name',
         'symbol',

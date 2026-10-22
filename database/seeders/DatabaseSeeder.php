@@ -2,24 +2,30 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use RuntimeException;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        if (! app()->environment(['local', 'testing'])) {
+            throw new RuntimeException('Demo seed data can only be loaded in local or testing environments.');
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        DB::transaction(function (): void {
+            $this->call([
+                GeographySeeder::class,
+                RolePermissionSeeder::class,
+                UserSeeder::class,
+                ProductSeeder::class,
+                BuyerSeeder::class,
+                CommerceSeeder::class,
+                MarketIntelligenceSeeder::class,
+                KnowledgeSeeder::class,
+                NotificationSeeder::class,
+            ]);
+        });
     }
 }
