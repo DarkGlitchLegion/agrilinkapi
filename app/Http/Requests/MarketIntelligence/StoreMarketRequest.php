@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests$folder;
+namespace App\Http\Requests\MarketIntelligence;
 
 use Illuminate\Foundation\Http\FormRequest;
 
